@@ -1,5 +1,7 @@
 # bookshelf-secure-password
 
+[![Dependency Status](https://david-dm.org/venables/bookshelf-secure-password.png)](https://david-dm.org/venables/bookshelf-secure-password)
+
 A Bookshelf.js plugin for handling secure passwords.
 
 Adds a method to set and authenticate against a BCrypt password.
