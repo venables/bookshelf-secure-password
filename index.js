@@ -23,9 +23,9 @@ module.exports = function(Bookshelf) {
             }
           }
         });
-
-        proto.constructor.apply(this, arguments);
       }
+
+      proto.constructor.apply(this, arguments);
     },
 
     authenticate: function(password) {
