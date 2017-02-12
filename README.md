@@ -11,6 +11,12 @@ Similar to [has_secure_password](http://api.rubyonrails.org/classes/ActiveModel/
 ## Installation
 
 ```
+yarn add bookshelf-secure-password
+```
+
+or
+
+```
 npm install bookshelf-secure-password --save
 ```
 
@@ -19,9 +25,8 @@ npm install bookshelf-secure-password --save
 1. Initialize the plugin
 
   ```javascript
-  ...
-  var bookshelf = require('bookshelf')(knex);
-  var securePassword = require('bookshelf-secure-password');
+  const bookshelf = require('bookshelf')(knex);
+  const securePassword = require('bookshelf-secure-password');
 
   bookshelf.plugin(securePassword);
   ```
@@ -29,7 +34,7 @@ npm install bookshelf-secure-password --save
 2. Add `hasSecurePassword` to the model(s) which require a secure password
 
   ```javascript
-  var User = bookshelf.Model.extend({
+  const User = bookshelf.Model.extend({
     tableName: 'users',
     hasSecurePassword: true
   });
@@ -38,7 +43,7 @@ npm install bookshelf-secure-password --save
   By default, this requires a field on the table named `password_digest`. To use a different column, simply set `true` to be the column name. For example:
 
   ```javascript
-  var User = bookshelf.Model.extend({
+  const User = bookshelf.Model.extend({
     tableName: 'users',
     hasSecurePassword: 'custom_password_digest_field'
   });
@@ -47,9 +52,8 @@ npm install bookshelf-secure-password --save
 3. To authenticate against the password, simply call the instance method `authenticate`:
 
   ```javascript
-  var authenticated = user.authenticate('some-password');
+  let isAuthenticated = user.authenticate('some-password');
   ```
-
 
 ## Notes
 
