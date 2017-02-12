@@ -1,6 +1,8 @@
 # bookshelf-secure-password
 
 [![Dependency Status](https://david-dm.org/venables/bookshelf-secure-password.png)](https://david-dm.org/venables/bookshelf-secure-password)
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
+
 
 A Bookshelf.js plugin for handling secure passwords.
 
