@@ -4,7 +4,7 @@
   "description": "A Bookshelf.js plugin for handling secure passwords",
   "main": "lib/secure-password.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha 'test/**/*.spec.js'",
+    "test": "./node_modules/.bin/standard && NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha 'test/**/*.spec.js'",
     "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
   },
   "repository": {
@@ -38,6 +38,8 @@
     "coveralls": "^2.11.16",
     "knex": "^0.12.6",
     "mocha": "^3.2.0",
-    "nyc": "^10.1.2"
+    "mock-knex": "^0.3.7",
+    "nyc": "^10.1.2",
+    "standard": "^8.6.0"
   }
 }
