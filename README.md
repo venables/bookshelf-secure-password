@@ -1,11 +1,16 @@
 # bookshelf-secure-password
 
+
+[![Version](https://img.shields.io/npm/v/bookshelf-secure-password.svg)](https://www.npmjs.com/package/bookshelf-secure-password)
+[![Build Status](https://img.shields.io/travis/venables/bookshelf-secure-password/master.svg)](https://travis-ci.org/venables/bookshelf-secure-password)
+[![Coverage Status](https://img.shields.io/coveralls/venables/bookshelf-secure-password.svg)](https://coveralls.io/github/venables/bookshelf-secure-password)
 [![Dependency Status](https://david-dm.org/venables/bookshelf-secure-password.png)](https://david-dm.org/venables/bookshelf-secure-password)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Downloads](https://img.shields.io/npm/dm/bookshelf-secure-password.svg)](https://www.npmjs.com/package/bookshelf-secure-password)
 
 A Bookshelf.js plugin for handling secure passwords.
 
-Adds a method to securely set and authenticate a password.
+Adds a method to securely set and authenticate a password using BCrypt.
 
 Similar to [has_secure_password](http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html) in Ruby on Rails.
 
@@ -23,7 +28,7 @@ npm install bookshelf-secure-password --save
 
 ## Usage
 
-1. Initialize the plugin
+1. Enable the plugin in your Bookshelf setup
 
   ```javascript
   const bookshelf = require('bookshelf')(knex)
@@ -41,7 +46,7 @@ npm install bookshelf-secure-password --save
   })
   ```
 
-  By default, this requires a field on the table named `password_digest`. To use a different column, simply set `true` to be the column name. For example:
+  By default, this will use the database column named `password_digest`. To use a different column, simply change `true` to be the column name. For example:
 
   ```javascript
   const User = bookshelf.Model.extend({
@@ -50,13 +55,14 @@ npm install bookshelf-secure-password --save
   })
   ```
 
-3. To authenticate against the password, simply call the instance method `authenticate`:
+3. To authenticate against the password, simply call the instance method `authenticate`, which returns a `Promise` resolving to the authenticated Model.
 
   ```javascript
   user.authenticate('some-password').then(function (user) {
     // do something with the authenticated user
   }, function (err) {
-    // invalid password
+    // invalid password.
+    // `err` will be of type `PasswordMismatchError`, which extends the `Error` class
   })
   ```
 
@@ -79,7 +85,7 @@ function signUp (email, password) {
 /**
  * Sign in with a given email, password combination
  *
- * @returns {Promise.<User>} A promise resolving to the authenticated User, or rejected with an error.
+ * @returns {Promise.<User>} A promise resolving to the authenticated User, or rejected with a `PasswordMismatchError`.
  */
 function signIn (email, password) {
   return User.forge({ email: email })
@@ -92,6 +98,7 @@ function signIn (email, password) {
 
 ## Notes
 
+* BCrypt requires that passwords are 72 characters maximum (it ignores characters after 72).
 * This library uses the bcrypt synchronous methods when setting a password.  This is to ensure the raw password is never stored on the model (in memory, or otherwise).
 * This library enables the built-in `virtuals` plugin on Bookshelf.
 
