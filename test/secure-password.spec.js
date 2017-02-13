@@ -11,17 +11,49 @@ describe('bookshelf-secure-password', function () {
   })
 
   describe('#constructor', function () {
-    it('does not keep the raw password on the model', function () {
-      const Model = bookshelf.Model.extend({
-        hasSecurePassword: true
+    describe('with the default column', function () {
+      let model
+
+      before(function () {
+        const Model = bookshelf.Model.extend({
+          hasSecurePassword: true
+        })
+
+        model = new Model({ password: 'testing' })
       })
 
-      let model = new Model({ password: 'testing' })
-      expect(model.get('password')).to.be.undefined
-      expect(model.attributes.password).to.be.undefined
+      it('does not keep the raw password on the model', function () {
+        expect(model.get('password')).to.be.undefined
+        expect(model.attributes.password).to.be.undefined
 
-      expect(model.get('password_digest')).to.be.a.string
-      expect(model.attributes.password_digest).to.be.a.string
+        expect(model.get('password_digest')).to.be.a.string
+        expect(model.attributes.password_digest).to.be.a.string
+      })
+
+      it('sets the password digest field to null if given a `null` value', function () {
+        expect(model.get('password_digest')).to.be.a.string
+        model.set('password', null)
+        expect(model.get('password_digest')).to.be.null
+      })
+
+      it('does not change the password digest if given undefined', function () {
+        let originalString = model.get('password_digest')
+        model.set('password', undefined)
+        expect(model.get('password_digest')).to.equal(originalString)
+      })
+
+      it('does not change the password digest if given an empty string', function () {
+        let originalString = model.get('password_digest')
+        model.set('password', '')
+        expect(model.get('password_digest')).to.equal(originalString)
+      })
+
+      it('changes the password digest if given a blank (spaces-only) string', function () {
+        let originalString = model.get('password_digest')
+        model.set('password', '  ')
+        expect(model.get('password_digest')).to.be.a.string
+        expect(model.get('password_digest')).not.to.equal(originalString)
+      })
     })
 
     it('allows the default column to be overwritten', function () {

@@ -101,6 +101,8 @@ function signIn (email, password) {
 * BCrypt requires that passwords are 72 characters maximum (it ignores characters after 72).
 * This library uses the bcrypt synchronous methods when setting a password.  This is to ensure the raw password is never stored on the model (in memory, or otherwise).
 * This library enables the built-in `virtuals` plugin on Bookshelf.
+* Passing a `null` value to the password will clear the `password_digest`.
+* Passing `undefined` or a zero-length string to the password will leave the `password_digest` as-is
 
 ## Testing
 
