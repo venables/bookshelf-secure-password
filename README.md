@@ -3,7 +3,6 @@
 [![Dependency Status](https://david-dm.org/venables/bookshelf-secure-password.png)](https://david-dm.org/venables/bookshelf-secure-password)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 
-
 A Bookshelf.js plugin for handling secure passwords.
 
 Adds a method to securely set and authenticate a password.
@@ -95,3 +94,7 @@ function signIn (email, password) {
 
 * This library uses the bcrypt synchronous methods when setting a password.  This is to ensure the raw password is never stored on the model (in memory, or otherwise).
 * This library enables the built-in `virtuals` plugin on Bookshelf.
+
+## Testing
+
+To run the tests locally, simply run `yarn test` or `npm test`

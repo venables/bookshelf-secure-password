@@ -2,9 +2,9 @@
   "name": "bookshelf-secure-password",
   "version": "1.1.0",
   "description": "A Bookshelf.js plugin for handling secure passwords",
-  "main": "lib/index.js",
+  "main": "lib/secure-password.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha 'test/**/*.spec.js'"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,20 @@
   "bugs": {
     "url": "https://github.com/venables/bookshelf-secure-password/issues"
   },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
   "homepage": "https://github.com/venables/bookshelf-secure-password#readme",
   "dependencies": {
     "bcrypt": "^1.0.2"
+  },
+  "devDependencies": {
+    "bookshelf": "^0.10.3",
+    "chai": "^3.5.0",
+    "knex": "^0.12.6",
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2"
   }
 }
