@@ -5,6 +5,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/venables/bookshelf-secure-password.svg)](https://coveralls.io/github/venables/bookshelf-secure-password)
 [![Dependency Status](https://david-dm.org/venables/bookshelf-secure-password.png)](https://david-dm.org/venables/bookshelf-secure-password)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
+[![License](https://img.shields.io/npm/l/bookshelf-secure-password.svg)](https://github.com/venables/bookshelf-secure-password/blob/master/LICENSE.txt)
 [![Downloads](https://img.shields.io/npm/dm/bookshelf-secure-password.svg)](https://www.npmjs.com/package/bookshelf-secure-password)
 
 A Bookshelf.js plugin for securely handling passwords.
