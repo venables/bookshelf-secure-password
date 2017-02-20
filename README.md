@@ -20,16 +20,14 @@ A Bookshelf.js plugin for securely handling passwords.
 ## Installation
 
 ```
-yarn add bookshelf-secure-password bcrypt
+yarn add bookshelf-secure-password
 ```
 
 or
 
 ```
-npm install bookshelf-secure-password bcrypt --save
+npm install bookshelf-secure-password --save
 ```
-
-*NOTE:* The `bcrypt` module is a peerDependency, and should be manually added to your project.
 
 ## Usage
 

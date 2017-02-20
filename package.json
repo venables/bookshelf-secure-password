@@ -29,11 +29,10 @@
     ]
   },
   "homepage": "https://github.com/venables/bookshelf-secure-password#readme",
-  "peerDependencies": {
+  "dependencies": {
     "bcrypt": "^1.0.2"
   },
   "devDependencies": {
-    "bcrypt": "^1.0.2",
     "bookshelf": "^0.10.3",
     "chai": "^3.5.0",
     "coveralls": "^2.11.16",
