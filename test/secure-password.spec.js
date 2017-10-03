@@ -13,6 +13,7 @@ describe('bookshelf-secure-password', function () {
   let model
   let BasicModel
   let CustomModel
+  let RoundsModel
 
   before(function () {
     knex = new Knex({ client: 'pg' })
@@ -27,6 +28,11 @@ describe('bookshelf-secure-password', function () {
 
     CustomModel = bookshelf.Model.extend({
       hasSecurePassword: 'custom_column'
+    })
+
+    RoundsModel = bookshelf.Model.extend({
+      hasSecurePassword: true,
+      bcryptRounds: 5
     })
   })
 
@@ -129,6 +135,30 @@ describe('bookshelf-secure-password', function () {
 
         expect(model.get('custom_column')).to.be.a.string
         expect(model.attributes.custom_column).to.be.a.string
+      })
+    })
+
+    describe('with a bcrypt rounds', function () {
+      describe('custom number of rounds', function () {
+        before(function () {
+          model = new RoundsModel({ id: 3, password: 'testing' })
+          return model.save()
+        })
+
+        it('uses custom bcrypt rounds', function () {
+          expect(model.get('password_digest').substr(4, 2)).to.equal('05')
+        })
+      })
+
+      describe('default number of rounds', function () {
+        before(function () {
+          model = new BasicModel({ id: 4, password: 'testing' })
+          return model.save()
+        })
+
+        it('uses default bcrypt rounds', function () {
+          expect(model.get('password_digest').substr(4, 2)).to.equal('12')
+        })
       })
     })
   })
