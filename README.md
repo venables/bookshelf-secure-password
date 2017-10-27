@@ -82,6 +82,14 @@ npm install bookshelf-secure-password --save
   })
   ```
 
+4.1. Optionaly you can use the one step authentication method `login` on the Model class to retrieve an authenticated model.
+
+  ```javascript
+  User.login({email: 'user@example.org'}, 'testing')
+      .then((usr) => console.log(`Auth as ${usr.get('name').}`))
+      .catch((err) => console.error(err.message) )
+  ```
+
 ## Example
 
 ```javascript
@@ -104,11 +112,7 @@ function signUp (email, password) {
  * @returns {Promise.<User>} A promise resolving to the authenticated User, or rejected with a `PasswordMismatchError`.
  */
 function signIn (email, password) {
-  return User.forge({ email: email })
-    .fetch()
-    .then(function (user) {
-      return user.authenticate(password)
-    })
+  return User.login({ email: email }, password)
 }
 ```
 
