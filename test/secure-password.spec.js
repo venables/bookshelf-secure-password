@@ -15,12 +15,14 @@ describe('bookshelf-secure-password', function () {
   let CustomModel
   let expectedQueryResponse
 
+  this.timeout(5000)
+
   before(function () {
     knex = new Knex({ client: 'pg' })
     mockKnex.mock(knex)
     let tracker = mockKnex.getTracker()
     tracker.install()
-    tracker.on('query', (query)=> query.response(expectedQueryResponse) )
+    tracker.on('query', (query) => query.response(expectedQueryResponse))
 
     bookshelf = new Bookshelf(knex)
     bookshelf.plugin(securePassword)
@@ -34,7 +36,6 @@ describe('bookshelf-secure-password', function () {
       tableName: 'other_table',
       hasSecurePassword: 'custom_column'
     })
-
   })
 
   beforeEach(function () {
@@ -231,13 +232,12 @@ describe('bookshelf-secure-password', function () {
       })
 
       describe('after save', function () {
-        this.timeout(5000)
         beforeEach(function () {
           return model.save()
         })
 
         it('resolves the Model record if the password matches', function () {
-          return BasicModel.__mkHash('testing').then( (password)=> {
+          return BasicModel.__mkHash('testing').then((password) => {
             expectedQueryResponse = [{
               id: 1,
               email: 'user@example.org',
@@ -254,7 +254,7 @@ describe('bookshelf-secure-password', function () {
         })
 
         it('rejects with a PasswordMismatchError if the password does not match', function () {
-          return BasicModel.__mkHash('testing').then( (password)=> {
+          return BasicModel.__mkHash('testing').then((password) => {
             expectedQueryResponse = [{
               id: 1,
               email: 'user@example.org',
@@ -273,7 +273,7 @@ describe('bookshelf-secure-password', function () {
         })
 
         it('rejects with a PasswordMismatchError if the no password is provided', function () {
-          return BasicModel.__mkHash('testing').then( (password)=> {
+          return BasicModel.__mkHash('testing').then((password) => {
             expectedQueryResponse = [{
               id: 1,
               email: 'user@example.org',
@@ -290,14 +290,13 @@ describe('bookshelf-secure-password', function () {
             })
           })
         })
-
       })
     })
 
     describe('without hasSecurePassword on this model', function () {
       it('calls the model`s `login` class method', function () {
         const Model = bookshelf.Model.extend({})
-        return BasicModel.__mkHash('testing').then( (password)=> {
+        return BasicModel.__mkHash('testing').then((password) => {
           expectedQueryResponse = [{
             id: 1,
             email: 'user@example.org',
