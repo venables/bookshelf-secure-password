@@ -1,6 +1,6 @@
 {
   "name": "bookshelf-secure-password",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "A Bookshelf.js plugin for handling secure passwords",
   "main": "lib/secure-password.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/venables/bookshelf-secure-password#readme",
   "dependencies": {
-    "bcrypt": "^1.0.2"
+    "bcrypt": "^2.0.0"
   },
   "devDependencies": {
     "bookshelf": "^0.10.3",
