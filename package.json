@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/venables/bookshelf-secure-password#readme",
   "dependencies": {
-    "bcrypt": "^2.0.0"
+    "bcrypt": "^3.0.6"
   },
   "devDependencies": {
     "bookshelf": "^0.10.3",
