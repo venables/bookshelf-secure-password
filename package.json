@@ -30,16 +30,16 @@
   },
   "homepage": "https://github.com/venables/bookshelf-secure-password#readme",
   "dependencies": {
-    "bcrypt": "^2.0.0"
+    "bcrypt": "^3.0.6"
   },
   "devDependencies": {
-    "bookshelf": "^0.10.3",
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.16",
-    "knex": "^0.12.6",
-    "mocha": "^3.2.0",
-    "mock-knex": "^0.3.7",
-    "nyc": "^10.1.2",
-    "standard": "^8.6.0"
+    "bookshelf": "^0.15.1",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.6",
+    "knex": "^0.19.1",
+    "mocha": "^6.2.0",
+    "mock-knex": "^0.4.6",
+    "nyc": "^14.1.1",
+    "standard": "^13.1.0"
   }
 }

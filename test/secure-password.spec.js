@@ -1,5 +1,7 @@
 'use strict'
 
+/* eslint-disable no-unused-expressions */
+
 const Bookshelf = require('bookshelf')
 const expect = require('chai').expect
 const Knex = require('knex')
@@ -71,7 +73,7 @@ describe('bookshelf-secure-password', function () {
         })
 
         it('does not change the password digest if given undefined', function () {
-          let originalString = model.get('password_digest')
+          const originalString = model.get('password_digest')
           model.set('password', undefined)
 
           return model.save().then(() => {
@@ -80,7 +82,7 @@ describe('bookshelf-secure-password', function () {
         })
 
         it('does not change the password digest if given an empty string', function () {
-          let originalString = model.get('password_digest')
+          const originalString = model.get('password_digest')
           model.set('password', '')
 
           return model.save().then(() => {
@@ -89,7 +91,7 @@ describe('bookshelf-secure-password', function () {
         })
 
         it('changes the password digest if given a blank (spaces-only) string', function () {
-          let originalString = model.get('password_digest')
+          const originalString = model.get('password_digest')
           model.set('password', '  ')
           return model.save().then(() => {
             expect(model.get('password_digest')).to.be.a.string
@@ -107,19 +109,25 @@ describe('bookshelf-secure-password', function () {
 
         return model
           .save()
-          .then(() => {
-            expect(false).to.be.true
-          }, () => {
-            expect(model.get('password')).to.be.undefined
-            expect(model.get('password_digest')).to.be.a.string
-            digest = model.get('password_digest')
-            return model.save()
-          })
-          .then(() => {
-            expect(false).to.be.true
-          }, () => {
-            expect(model.get('password_digest')).to.equal(digest)
-          })
+          .then(
+            () => {
+              expect(false).to.be.true
+            },
+            () => {
+              expect(model.get('password')).to.be.undefined
+              expect(model.get('password_digest')).to.be.a.string
+              digest = model.get('password_digest')
+              return model.save()
+            }
+          )
+          .then(
+            () => {
+              expect(false).to.be.true
+            },
+            () => {
+              expect(model.get('password_digest')).to.equal(digest)
+            }
+          )
       })
     })
 
@@ -171,13 +179,16 @@ describe('bookshelf-secure-password', function () {
 
       describe('before save', function () {
         it('does not authenticate until the record is saved', function () {
-          return model.authenticate('testing').then((model) => {
-            expect(false).to.be.true
-          }, (err) => {
-            expect(err).to.be.defined
-            expect(err).to.be.an.instanceof(PasswordMismatchError)
-            expect(err.name).to.equal('PasswordMismatchError')
-          })
+          return model.authenticate('testing').then(
+            model => {
+              expect(false).to.be.true
+            },
+            err => {
+              expect(err).not.to.be.undefined
+              expect(err).to.be.an.instanceof(PasswordMismatchError)
+              expect(err.name).to.equal('PasswordMismatchError')
+            }
+          )
         })
       })
 
@@ -187,31 +198,40 @@ describe('bookshelf-secure-password', function () {
         })
 
         it('resolves the Model if the password matches', function () {
-          return model.authenticate('testing').then((model) => {
-            expect(model).to.be.defined
-          }, (err) => {
-            expect(err).to.be.undefined
-          })
+          return model.authenticate('testing').then(
+            model => {
+              expect(model).not.to.be.undefined
+            },
+            err => {
+              expect(err).to.be.undefined
+            }
+          )
         })
 
         it('rejects with a PasswordMismatchError if the password does not match', function () {
-          return model.authenticate('invalid').then((model) => {
-            expect(false).to.be.true
-          }, (err) => {
-            expect(err).to.be.defined
-            expect(err).to.be.an.instanceof(PasswordMismatchError)
-            expect(err.name).to.equal('PasswordMismatchError')
-          })
+          return model.authenticate('invalid').then(
+            model => {
+              expect(false).to.be.true
+            },
+            err => {
+              expect(err).not.to.be.undefined
+              expect(err).to.be.an.instanceof(PasswordMismatchError)
+              expect(err.name).to.equal('PasswordMismatchError')
+            }
+          )
         })
 
         it('rejects with a PasswordMismatchError if the no password is provided', function () {
-          return model.authenticate().then((model) => {
-            expect(model).to.be.defined
-          }, (err) => {
-            expect(err).to.be.defined
-            expect(err).to.be.an.instanceof(PasswordMismatchError)
-            expect(err.name).to.equal('PasswordMismatchError')
-          })
+          return model.authenticate().then(
+            model => {
+              expect(model).to.be.defined
+            },
+            err => {
+              expect(err).not.to.be.undefined
+              expect(err).to.be.an.instanceof(PasswordMismatchError)
+              expect(err.name).to.equal('PasswordMismatchError')
+            }
+          )
         })
       })
     })
@@ -224,7 +244,7 @@ describe('bookshelf-secure-password', function () {
         try {
           return model.authenticate('testing')
         } catch (err) {
-          expect(err).to.be.defined
+          expect(err).not.to.be.undefined
           expect(err).to.be.an.instanceof(TypeError)
         }
       })
