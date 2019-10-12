@@ -41,6 +41,6 @@
     "mock-knex": "^0.4.6",
     "nyc": "^14.1.1",
     "standard": "^13.1.0",
-    "bookshelf-virtuals-plugin": "^0.1.1",
+    "bookshelf-virtuals-plugin": "^0.1.1"
   }
 }
