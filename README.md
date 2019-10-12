@@ -115,7 +115,7 @@ function signIn (email, password) {
 ## Notes
 
 * BCrypt requires that passwords are 72 characters maximum (it ignores characters after 72).
-* This library enables the built-in `virtuals` plugin on Bookshelf for the virtual `password` field.
+* This library enables the `bookshelf-virtuals-plugin` plugin on Bookshelf for the virtual `password` field.
 * Passing a `null` value to the password will clear the `password_digest`.
 * Passing `undefined` or a zero-length string to the password will leave the `password_digest` as-is
 
