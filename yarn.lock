@@ -304,6 +304,13 @@ bluebird@^3.4.1, bluebird@^3.4.3, bluebird@^3.7.0:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.1.tgz#df70e302b471d7473489acf26a93d63b53f874de"
   integrity sha512-DdmyoGCleJnkbp3nkbxTLJ18rjDsE4yCggEwKNXkeV123sPNfOCYeDoeuOY+F2FrSjO1YXcTU+dsy96KMy+gcg==
 
+bookshelf-virtuals-plugin@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/bookshelf-virtuals-plugin/-/bookshelf-virtuals-plugin-0.1.1.tgz#cdd8c1609a4558a581ee684b5eadcf295afcf8ac"
+  integrity sha512-MFFjtzLoyWaGD7eMT2UZ8H00CHNk7M5WuSTxi+82gLJqbq0TyQdSQsKS5/NHfQjqd3wZKEV+yEbzpck2oBGe2A==
+  dependencies:
+    lodash "^4.17.15"
+
 bookshelf@^0.15.1:
   version "0.15.1"
   resolved "https://registry.yarnpkg.com/bookshelf/-/bookshelf-0.15.1.tgz#ca545ad8189a6a3be8b25661ad462dbf667222e3"
