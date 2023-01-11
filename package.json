@@ -37,7 +37,7 @@
     "bookshelf-virtuals-plugin": "^0.1.1",
     "chai": "^4.2.0",
     "coveralls": "^3.0.6",
-    "knex": "^0.19.1",
+    "knex": "^2.4.0",
     "mocha": "^6.2.0",
     "mock-knex": "^0.4.6",
     "nyc": "^14.1.1",
